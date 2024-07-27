@@ -12,20 +12,16 @@
 
 <body>
 
-  <h1>Here are some Utilities!</h1>
+  <h1>Simple in browser text file viewer!</h1>
 
-  <p>No, they are probably not good, but maybe they can be useful?</p>
-  
+  <!--Simple in Browser Text Viewer-->
   <hr>
-
-  <!--Simple webhook deletor-->
-  <label>Discord Webhook Deletor</label>
-  <br>
-  <input id="webhookInputBox" type="text"/>
-  <button id="webhookDeletionButton">Delete Webhook</button>
-  <label id="webhookFeedBackBox"></label>
-  <script src="scripts/webhookHelper.js"></script>
-  <!--Simple webhook deletor end-->
+  <input type="file" id="fileInput">
+  <div id="page-wrapper">
+		<textarea id="fileDisplayArea", rows="15", readonly></textarea>
+	</div>
+  <script src="scripts/textviewer.js"></script>
+  <!--Simple in Browser Text Viewer end-->  
 
   <div class="footer">
     <p><a href="index">Main Page</a> - <a href="https://github.com/wiviw5/wiviw5.github.io">Website Source</a> - <a href="socials">Socials</a></p>
