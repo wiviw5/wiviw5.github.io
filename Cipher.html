@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+  <meta charset="utf-8">
+  <title>Cipher</title>
+</head>
+<style>
+  body {
+    margin: 40px auto;
+    max-width: 650px;
+    line-height: 1.6;
+    font-size: 18px;
+    background-color: #19181b;
+    color: #f8f6ea;
+  }
+
+  a:visited,
+  a:hover {
+    color: #8888ff;
+  }
+
+  a {
+    color: #66aaff;
+  }
+
+  h1,
+  h2,
+  h3 {
+    line-height: 1.2
+  }
+
+  * {
+    font-family: sans-serif;
+  }
+
+  #page-wrapper {
+    width: 600px;
+    background: #1f1d22;
+    padding: 1em;
+    margin: 1em auto;
+    min-height: 300px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+  }
+
+  #inputField {
+    width: 100%;
+  }
+
+  #outputField {
+    width: 100%;
+  }
+</style>
+
+<body>
+  <h3>Input</h3>
+  <hr>
+  <div id="page-wrapper">
+    <button id="encodeData">Encode</button>
+    <button id="decodeData">Decode</button>
+    <input type="file" id="fileInput">
+    <textarea id="inputField" , rows="15"></textarea>
+  </div>
+  <h3>Output</h3>
+  <hr>
+  <div id="page-wrapper">
+    <button id="saveData">Save to file</button>
+    <button id="toTop">Copy to Top</button>
+    <br>
+    <textarea id="outputField" , rows="15"></textarea>
+  </div>
+
+
+  <script>
+    window.onload = function () {
+      const inputField = document.getElementById('inputField');
+      const outputField = document.getElementById('outputField');
+
+
+      // Rot13 Function
+      function rot13(str) {
+        return str.replace(/[a-zA-Z]/g, function (c) {
+          var shift = c === c.toUpperCase() ? 'A'.charCodeAt(0) : 'a'.charCodeAt(0);
+          return String.fromCharCode((c.charCodeAt(0) - shift + 13) % 26 + shift);
+        });
+      }
+      // Rot13 Function End
+
+
+      // Encode Button
+      const encodeData = document.getElementById("encodeData");
+      function onEncodeButton() {
+        if (inputField.value === "") {
+          return;
+        }
+        const modifiedValue = btoa(inputField.value);
+        outputField.value = rot13(modifiedValue);
+      }
+      encodeData.addEventListener("click", onEncodeButton);
+      // Encode Button End
+
+
+      // Decode Button
+      const decodeData = document.getElementById("decodeData");
+      function onDecodeButton() {
+        if (inputField.value === "") {
+          return;
+        }
+        const modifiedValue = rot13(inputField.value);
+        outputField.value = atob(modifiedValue);
+      }
+      decodeData.addEventListener("click", onDecodeButton);
+      // Decode Button End
+
+
+      // File Input Uploader
+      var fileInput = document.getElementById('fileInput');
+      fileInput.addEventListener('change', function (e) {
+        var file = fileInput.files[0];
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          inputField.value = reader.result;
+        }
+        reader.readAsText(file);
+      });
+      // File Input Uploader End
+
+
+      // Save to File Button
+      const saveData = document.getElementById("saveData");
+      function onSaveToFileButton() {
+        if (outputField.value === "") {
+          return;
+        }
+        const a = document.createElement('a');
+        a.setAttribute('href', 'data:text/plain; encoding:utf-8,' + encodeURIComponent(outputField.value));
+        a.setAttribute('download', "output.txt");
+        a.style.display = 'none';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      }
+      saveData.addEventListener("click", onSaveToFileButton);
+      // Save to File Button End
+
+
+      // Copy to Top Button
+      const toTop = document.getElementById("toTop");
+      function onToTopButton() {
+        inputField.value = outputField.value;
+        outputField.value = "";
+      }
+      toTop.addEventListener("click", onToTopButton);
+      // Copy to Top End
+
+
+    } </script>
+
+
+</body>
+
+</html>
