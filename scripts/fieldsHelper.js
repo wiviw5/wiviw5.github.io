@@ -8,24 +8,28 @@ const outputArea = document.getElementById('outputArea');
 // Listener for input
 function updateVideo(){
     outputArea.innerHTML = `<video src="${this.value}" preload="auto" controls></video>`;
+    videoSiteField.value =  "";
 }
 videoSiteField.addEventListener('change', updateVideo);
 // Listener for input End 
 // Listener for input
 function updateAudio(){
     outputArea.innerHTML = `<audio src="${this.value}" preload="auto" controls></audio>`;
+    audioSiteField.value =  "";
 }
 audioSiteField.addEventListener('change', updateAudio);
 // Listener for input End
 // Listener for input
 function updateImage(){
     outputArea.innerHTML = `<img src=${this.value}>`;
+    imageSiteField.value =  "";
 }
 imageSiteField.addEventListener('change', updateImage);
 // Listener for input End console.log(``);
 // Listener for input
 function updateLink(){
     outputArea.innerHTML = `<a href="${this.value}">Link</a>`;
+    linkSiteField.value =  "";
 }
 linkSiteField.addEventListener('change', updateLink);
 // Listener for input End
