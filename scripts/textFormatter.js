@@ -17,4 +17,4 @@ function copyDiv(){
     .then(() => console.log("Copied"))
     .catch((e) => console.log(e));
 }
-inputField.addEventListener('change', updateForm);
+inputField.addEventListener('change', copyDiv);
