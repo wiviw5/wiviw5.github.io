@@ -28,7 +28,7 @@ imageSiteField.addEventListener('change', updateImage);
 // Listener for input End console.log(``);
 // Listener for input
 function updateLink(){
-    outputArea.innerHTML = `<a href="${linkSiteField.value}">Link</a>`;
+    outputArea.innerHTML = `<a href="${this.value}">Link</a>`;
     linkSiteField.value =  "";
 }
 linkSiteField.addEventListener('change', updateLink);
@@ -46,13 +46,3 @@ function addButtonListeners() {
 }
 // Register Dynamic Buttons End
 addButtonListeners();
-
-const pasteLinksButton = document.getElementById('pasteLinksButton');
-
-function getLinksClipboard(){
-  navigator.clipboard
-    .readText()
-    .then((clipText) => (inputField.value = clipText));
-    updateLink();
-}
-pasteLinksButton.addEventListener('click', getLinksClipboard);
